@@ -20,9 +20,7 @@ module.exports = {
       },
     },
   },
-  initialState: {
-    arr: [],
-  },
+  initialState: {},
   channels: {
     messenger: {
       enabled: true,
@@ -32,26 +30,6 @@ module.exports = {
       appId: process.env.MESSENGER_APP_ID,
       appSecret: process.env.MESSENGER_APP_SECRET,
       verifyToken: process.env.MESSENGER_VERIFY_TOKEN,
-      // profile:{
-      //   persistentMenu:[
-      //     {
-      //       locale: 'default',
-      //       composerInputDisabled: false,
-      //       callToActions:[
-      //         {
-      //           type: 'postback',
-      //           title: 'i want to submit Question-Answer',
-      //           payload: 'submit'
-      //         },
-      //         {
-      //           type: 'web_url',
-      //           title: 'take me to the questions!',
-      //           url: 'https://www.notion.so/SUST-CSE-QB-7b86b0c1074b493d84fabceb842244a5',
-      //         }
-      //       ]
-      //     }
-      //   ]
-      // }
     },
     whatsapp: {
       enabled: false,
