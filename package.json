@@ -9,6 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@notionhq/client": "^0.2.4",
     "bottender": "1.5.1-alpha.9"
   },
   "devDependencies": {
