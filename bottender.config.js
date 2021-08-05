@@ -47,7 +47,6 @@ module.exports = {
                 type: 'web_url',
                 title: 'take me to the questions!',
                 url: 'https://www.notion.so/SUST-CSE-QB-7b86b0c1074b493d84fabceb842244a5',
-                webviewHeightRatio: 'full',
               }
             ]
           }
