@@ -31,6 +31,9 @@ module.exports = {
       appSecret: process.env.MESSENGER_APP_SECRET,
       verifyToken: process.env.MESSENGER_VERIFY_TOKEN,
       profile:{
+        getStarted: {
+          payload: 'GET_STARTED',
+        },
         persistentMenu:[
           {
            locale: 'default',
@@ -38,7 +41,7 @@ module.exports = {
            callToActions: [
              {
                type: 'postback',
-               title: 'I want to post a question-answer',
+               title: 'i want to post question',
                payload: 'SUBMIT',
              },
              {
