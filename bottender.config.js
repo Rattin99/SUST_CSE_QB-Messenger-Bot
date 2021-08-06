@@ -21,10 +21,10 @@ module.exports = {
     },
   },
   initialState: {
-    question:0,
-    answer:0,
-    course:0,
-    person:0
+    question:'question',
+    answer:'answer',
+    course:'course',
+    person:'person'
   },
   channels: {
     messenger: {
