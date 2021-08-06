@@ -164,33 +164,41 @@ async function getCoursesOpt(context){
 
 async function POSTit(context){
     const course = context.event.text;
+    const question = context.state.question; 
+    const answer = context.state.answer
     
     context.getUserProfile().then(user =>{
        const person = user.firstName + " " + user.lastname;
 
        create({
-           question: context.state.question,
-           answer: context.state.answer,
+           question,
+           answer,
            course,
            person
        })
+        context.sendText(`${question} - ${answer} - ${course} -${person}`)
     })
 
+    
     await context.sendText('The question is sent to notion')
     context.resetState();
 }
 
 async function postQ(context){
     const course = context.event.text;
+    const question = context.state.question; 
+    const answer = context.state.answer
     
     context.getUserProfile().then(user =>{
        const person = user.firstName + " " + user.lastname;
 
        createP({
            question: context.state.question,
-           course,
-           person
+           course:course,
+           person:person
        })
+       context.sendText(`${question} - ${answer} - ${course} -${person}`)
+
     })
 
     await context.sendText('The question is sent to notion')
