@@ -3,14 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "bottender dev",
+    "dev": "nodemon server.js",
     "lint": "eslint . ",
-    "start": "bottender start",
+    "start": "node server.js",
     "test": "jest"
   },
   "dependencies": {
     "@notionhq/client": "^0.2.4",
-    "bottender": "1.5.1-alpha.9"
+    "body-parser": "^1.19.0",
+    "bottender": "1.5.1-alpha.9",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.12"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
