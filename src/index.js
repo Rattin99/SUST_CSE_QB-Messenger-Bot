@@ -24,10 +24,9 @@ async function respond(context){
 
 async function handleQuestion(context){
 
-    context.sendText(`Write the question in one text.`)
-    context.sendText(`Put "Q:" in front`)
-    context.sendText(`example: Q:DLD er purnorup ki?`)
-    context.sendText(`your question: `);
+    await context.sendText(`Write the question in one text.`)
+    await context.sendText(`Put "Q:" in front of the text`)
+    await context.sendText(`example: "Q:DLD er purnorup ki?"`)
 
     // context.sendText('answer ki jana ase?',{
     //     quickReplies:[
