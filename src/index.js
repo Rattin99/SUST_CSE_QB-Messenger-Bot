@@ -19,7 +19,7 @@ module.exports = async function App(context) {
         payload('TOC',POSTit),
         payload('CSE137',POSTit),
         payload('ALGO',POSTit),
-        payload('DECLINE_ANSWER',postQ)
+        payload('ANSWER_DECLINE',postQ)
 
     ])
 };
@@ -163,27 +163,39 @@ async function getCoursesOpt(context){
 }
 
 async function POSTit(context){
-    await context.sendText(context.event.text);
+    const course = context.event.text;
     
     context.getUserProfile().then(user =>{
-       context.sendText(user.firstName);
+       const person = user.firstName + " " + user.lastname;
+
+       create({
+           question: context.state.question,
+           answer: context.state.answer,
+           course,
+           person
+       })
     })
+
+    await context.sendText('The question is sent to notion')
+    context.resetState();
 }
 
 async function postQ(context){
-    context.getUserProfile().then(user=>{
-        const person = user.firstName + " " +  user.lastname;
-        context.setState({
-            ...context.myobject,
-            course: context.payload,
-            person: person
-        })
+    const course = context.event.text;
+    
+    context.getUserProfile().then(user =>{
+       const person = user.firstName + " " + user.lastname;
 
-        createP({ question: context.state.question,
-            course:  context.state.question,
-            person: context.state.person })
+       createP({
+           question: context.state.question,
+           course,
+           person
+       })
     })
 
+    await context.sendText('The question is sent to notion')
+
+    context.resetState();
 }
 
 
