@@ -53,7 +53,7 @@ async function handleQuestionPost(context){
     context.setState({
         myObject:{
             ...context.myobject,
-            question: question
+             question
         }
     });
 
@@ -95,7 +95,7 @@ async function handleAnswerPost(context){
         context.setState({
             myObject:{
             ...context.myobject,
-            answer: answer
+            answer
         }
         });
 
