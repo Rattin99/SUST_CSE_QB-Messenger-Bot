@@ -20,7 +20,12 @@ module.exports = {
       },
     },
   },
-  initialState: {},
+  initialState: {
+    question:0,
+    answer:0,
+    course:0,
+    person:0
+  },
   channels: {
     messenger: {
       enabled: true,
