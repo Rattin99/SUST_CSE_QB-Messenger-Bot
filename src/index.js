@@ -163,9 +163,11 @@ async function getCoursesOpt(context){
 }
 
 async function POSTit(context){
-
     await context.sendText(context.event.text);
     
+    context.getUserProfile().then(user =>{
+       context.sendText(user.firstName);
+    })
 }
 
 async function postQ(context){
