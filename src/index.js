@@ -1,17 +1,11 @@
 const {router, text,payload} = require('bottender/router');
 const {createP, getTags} = require('./notion')
 
-const tags = ["MAT102","PHY207","C (CSE133)","MAT204 (2/2 Math)", "EEE111 (1/2 EEE)",
-"Data Structure (CSE137)","Numerical Analysis (CSE239)","MAT103D(1/2 math)",
-"ECO105D","TOC (CSE247)"]
-
 module.exports = async function App(context) {
     return router([
         payload('SUBMIT',respond),
         text(/^Q:/,handleQuestionPost),
         payload('QUESTION',handleQuestion),
-        // payload('ANSWER_POST',handleAnswer),
-        // payload(/^A:/,handleAnswerPost)
     ])
 };
 
@@ -41,10 +35,10 @@ async function handleQuestionPost(context){
     const text = context.event.text;
     const question = text.substring(2,text.length);
 
-    context.setState({
-        ...context.myobject,
-        question: question
-    });
+    // context.setState({
+    //     ...context.myobject,
+    //     question: question
+    // });
 
     await context.sendText(`the question you posted is: "${question}"`);
      context.sendText('answer ki jana ase?',{
