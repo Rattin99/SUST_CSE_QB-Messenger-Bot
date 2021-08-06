@@ -8,7 +8,7 @@ module.exports = async function App(context) {
         text(/^Q:/,handleQuestionPost),
         payload('QUESTION',handleQuestion),
         payload('ANSWER_POST',handleAnswer),
-        payload(/^A:/,handleAnswerPost)
+        payload(/^A:/,handleAnswerPost),
     ])
 };
 
@@ -72,14 +72,8 @@ async function handleAnswerPost(context){
     const text = context.event.text;
     const answer = text.substring(2,text.length);
 
-    await context.setState({
-        ...context.myobject,
-        answer: answer
-    });
+    await context.sendText(` the answer you posted is: "${answer}" `);
 
-    await context.sendText(`the answer you posted is: "${answer}"`);
-
-    // getCoursesOpt(context);
 }
 
 async function getCoursesOpt(context){
