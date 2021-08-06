@@ -164,20 +164,8 @@ async function getCoursesOpt(context){
 
 async function POSTit(context){
 
-    await context.sendText(context.payload);
-    context.getUserProfile().then(user=>{
-        const person = user.firstName + " " +  user.lastname;
-        context.setState({
-            ...context.myobject,
-            course: context.payload,
-            person: person
-        })
-
-        create({ question: context.state.question,
-                answer: context.state.answer,
-                course:  context.state.course,
-                person: context.state.person });
-    })
+    await context.sendText(context.event.text);
+    
 }
 
 async function postQ(context){
