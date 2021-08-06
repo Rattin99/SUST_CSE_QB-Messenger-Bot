@@ -79,12 +79,12 @@ async function handleAnswerPost(context){
 
     await context.sendText(`the answer you posted is: "${answer}"`);
 
-    getCoursesOpt(context);
+    // getCoursesOpt(context);
 }
 
 async function getCoursesOpt(context){
 
-    await context.sendText(`"${context.setState.question}" eita kon course er question?`,{
+    await context.sendText(` "${context.setState.question}" eita kon course er question? `,{
         quickReplies: [
             {
                 contentType: 'text',
