@@ -89,9 +89,6 @@ async function handleAnswer(context){
 }
 
 async function handleAnswerPost(context){
-    context.sendText(context.state.question);
-   if(context.state.question){
-    if(context.event.isText){
         const text = context.event.text;
         const answer = text.substring(2,text.length);
 
@@ -105,15 +102,12 @@ async function handleAnswerPost(context){
         await context.sendText(` the answer you posted is: "${answer}" `);
 
         getCoursesOpt(context);
-    }
-   }else{
-       context.sendText('age question ta to dite hobe!');
-   }
+  
 }
 
 async function getCoursesOpt(context){
 
-    await context.sendText(` "${context.setState.question}" eita kon course er question? `,{
+    await context.sendText(` "${context.state.question}" eita kon course er question? `,{
         quickReplies: [
             {
                 contentType: 'text',
