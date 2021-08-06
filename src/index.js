@@ -51,8 +51,10 @@ async function handleQuestionPost(context){
     const question = text.substring(2,text.length);
 
     context.setState({
-        ...context.myobject,
-        question: question
+        myObject:{
+            ...context.myobject,
+            question: question
+        }
     });
 
     await context.sendText(`the question you posted is: "${question}"`);
@@ -93,8 +95,10 @@ async function handleAnswerPost(context){
         const answer = text.substring(2,text.length);
 
         context.setState({
+            myObject:{
             ...context.myobject,
             answer: answer
+        }
         });
 
         await context.sendText(` the answer you posted is: "${answer}" `);
