@@ -10,8 +10,8 @@ module.exports = async function App(context) {
         payload('SUBMIT',respond),
         text(/^Q:/,handleQuestionPost),
         payload('QUESTION',handleQuestion),
-        payload('ANSWER_POST',handleAnswer),
-        payload(/^A:/,handleAnswerPost)
+        // payload('ANSWER_POST',handleAnswer),
+        // payload(/^A:/,handleAnswerPost)
     ])
 };
 
