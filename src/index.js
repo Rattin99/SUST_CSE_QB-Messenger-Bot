@@ -89,6 +89,7 @@ async function handleAnswer(context){
 }
 
 async function handleAnswerPost(context){
+    context.sendText(context.state.question);
    if(context.state.question){
     if(context.event.isText){
         const text = context.event.text;
