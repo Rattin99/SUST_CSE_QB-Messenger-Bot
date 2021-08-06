@@ -2,7 +2,7 @@ const {router, text,payload} = require('bottender/router');
 
 module.exports = async function App(context) {
     return router([
-        payload('SUBMIT',)
+        payload('SUBMIT',respond)
     ])
 };
 
