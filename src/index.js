@@ -2,9 +2,6 @@ const {router, text,payload} = require('bottender/router');
 const {createP, getTags} = require('./notion')
 
 module.exports = async function App(context) {
-    // context.getUserProfile().then(user => {
-
-    // })
     return router([
         payload('SUBMIT',respond),
         text(/^Q:/,handleQuestionPost),
@@ -53,7 +50,6 @@ async function handleQuestionPost(context){
     const question = text.substring(2,text.length);
 
     createP({question});
-    getTags().then(tags => context.sendText(tags));
     await context.sendText(`the question you posted is: "${question}"`);
    
 }
