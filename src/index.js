@@ -74,7 +74,7 @@ async function handleAnswerPost(context){
 
     await context.sendText(` the answer you posted is: "${answer}" `);
 
-    getCoursesOpt();
+    getCoursesOpt(context);
 }
 
 async function getCoursesOpt(context){
