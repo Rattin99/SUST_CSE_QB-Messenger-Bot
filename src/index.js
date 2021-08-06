@@ -1,5 +1,5 @@
 const {router, text,payload} = require('bottender/router');
-const {createP, getTags} = require('./notion')
+const {createP, create} = require('./notion')
 
 
 module.exports = async function App(context) {
@@ -9,6 +9,18 @@ module.exports = async function App(context) {
         payload('QUESTION',handleQuestion),
         payload('ANSWER_POST',handleAnswer),
         text(/^A:/,handleAnswerPost),
+        payload('MAT102',POSTit),
+        payload('PHY207',POSTit),
+        payload('CSE133',POSTit),
+        payload('EEE111',POSTit),
+        payload( 'CSE239',POSTit),
+        payload( 'MAT103',POSTit),
+        payload('MAT105',POSTit),
+        payload('TOC',POSTit),
+        payload('CSE137',POSTit),
+        payload('ALGO',POSTit),
+        payload('DECLINE_ANSWER',postQ)
+
     ])
 };
 
@@ -60,6 +72,12 @@ async function handleQuestionPost(context){
     })
    
 }
+async function handleAnswerDecline(context){
+
+    createP({question: context.state.question});
+
+    getCoursesOpt(context);
+}
 
 async function handleAnswer(context){
     await context.sendText(`Write the answer in one text.`)
@@ -69,12 +87,23 @@ async function handleAnswer(context){
 }
 
 async function handleAnswerPost(context){
-    const text = context.event.text;
-    const answer = text.substring(2,text.length);
+   if(context.state.question){
+    if(context.event.isText){
+        const text = context.event.text;
+        const answer = text.substring(2,text.length);
 
-    await context.sendText(` the answer you posted is: "${answer}" `);
+        context.setState({
+            ...context.myobject,
+            answer: answer
+        });
 
-    getCoursesOpt(context);
+        await context.sendText(` the answer you posted is: "${answer}" `);
+
+        getCoursesOpt(context);
+    }
+   }else{
+       context.sendText('age question ta to dite hobe!');
+   }
 }
 
 async function getCoursesOpt(context){
@@ -118,11 +147,6 @@ async function getCoursesOpt(context){
             },
             {
                 contentType: 'text',
-                title:  "Numerical Analysis (CSE239)",
-                payload: 'CSE239'
-            },
-            {
-                contentType: 'text',
                 title:  "MAT103D(1/2 math)",
                 payload: 'MAT103'
             },
@@ -145,5 +169,36 @@ async function getCoursesOpt(context){
     })
 }
 
+async function POSTit(context){
+    context.getUserProfile().then(user=>{
+        const person = user.firstName + " " +  user.lastname;
+        context.setState({
+            ...context.myobject,
+            course: context.payload,
+            person: person
+        })
+
+        create({ question: context.state.question,
+                answer: context.state.answer,
+                course:  context.state.course,
+                person: context.state.person });
+    })
+}
+
+async function postQ(context){
+    context.getUserProfile().then(user=>{
+        const person = user.firstName + " " +  user.lastname;
+        context.setState({
+            ...context.myobject,
+            course: context.payload,
+            person: person
+        })
+
+        createP({ question: context.state.question,
+            course:  context.state.question,
+            person: context.state.person })
+    })
+
+}
 
 

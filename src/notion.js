@@ -3,7 +3,7 @@ const { Client } = require('@notionhq/client');
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 
-function create({ question, answer, courses }) {
+function create({ question, answer, course,person }) {
     notion.pages.create({
         parent: {
             database_id: process.env.NOTION_DATABASE_ID
@@ -27,9 +27,21 @@ function create({ question, answer, courses }) {
                 }]
             },
             [process.env.NOTION_COURSE_ID]: {
-                multi_select: courses.map(course => {
-                    return { id: course.id }
-                })
+                Option: {
+                    select :{
+                        name: course
+                    }
+                }
+            },
+            [process.env.NOTION_PERSON_ID]: {
+                rich_text: [
+                    {
+                        type: 'text',
+                        text:{
+                            content: person
+                        }
+                    }
+                ]
             },
 
 
@@ -37,7 +49,7 @@ function create({ question, answer, courses }) {
     })
 }
 
-function createP({question}){
+function createP({question,course,person}){
     notion.pages.create({
         parent:{
             database_id: process.env.NOTION_DATABASE_ID
@@ -48,6 +60,22 @@ function createP({question}){
                     type: 'text',
                     text: {
                         content: question
+                    }
+                }]
+            },
+            [process.env.NOTION_COURSE_ID]: {
+                Option:{
+                    select:{
+                        name: course
+                    }
+                }
+            },
+            [process.env.NOTION_PERSON_ID]: {
+                rich_text: [{
+                    type: 'text',
+                    text: {
+                        content: person
+
                     }
                 }]
             }
@@ -72,7 +100,6 @@ function notionPropertiesById(properties) {
 
 module.exports = {
     create,
-    getTags,
     createP
 }
 
