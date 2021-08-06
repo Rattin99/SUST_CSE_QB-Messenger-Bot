@@ -7,6 +7,7 @@ const app = bottender({
   dev: process.env.NODE_ENV !== 'production',
 });
 
+
 const port = Number(process.env.PORT) || 5000;
 
 // the request handler of the bottender app
@@ -16,15 +17,15 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
+  const verify = (req, _, buf) => {
+    req.rawBody = buf.toString();
+  };
+
   server.use(
     cors({
       origin: "*"
     })
   );
-
-  const verify = (req, _, buf) => {
-    req.rawBody = buf.toString();
-  };
   server.use(bodyParser.json({ verify }));
   server.use(bodyParser.urlencoded({ extended: false, verify }));
 
