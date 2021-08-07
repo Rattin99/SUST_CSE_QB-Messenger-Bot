@@ -19,6 +19,7 @@ module.exports = async function App(context) {
         payload('TOC',POSTit),
         payload('CSE137',POSTit),
         payload('ALGO',POSTit),
+        payload('DLD',POSTit),
         payload('ANSWER_DECLINE',handleAnswerDecline)
 
     ])
@@ -157,6 +158,11 @@ async function getCoursesOpt(context){
                 contentType: 'text',
                 title: "Algo",
                 payload: 'ALGO'
+            },
+            {
+                contentType: 'text',
+                title: "DLD",
+                payload: 'DLD'
             }    
         ]
     })
