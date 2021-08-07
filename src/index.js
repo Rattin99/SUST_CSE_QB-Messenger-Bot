@@ -19,7 +19,7 @@ module.exports = async function App(context) {
         payload('TOC',POSTit),
         payload('CSE137',POSTit),
         payload('ALGO',POSTit),
-        payload('ANSWER_DECLINE',postQ)
+        payload('ANSWER_DECLINE',handleAnswerDecline)
 
     ])
 };
@@ -170,13 +170,25 @@ async function POSTit(context){
     context.getUserProfile().then(user =>{
        const person = `${user.firstName}  ${user.lastName}`;
 
-       create({
-           question,
-           answer,
-           course,
-           person
-       })
+     if(answer == 'answer'){
+
+        createP({
+            question: context.state.question,
+            course:course,
+            person:person
+        })
+        
+        context.sendText(`${question} - ${course} -${person}`);
+     }else{
+        create({
+            question,
+            answer,
+            course,
+            person
+        })
         context.sendText(`${question} - ${answer} - ${course} -${person}`)
+     }
+        
     })
 
     
