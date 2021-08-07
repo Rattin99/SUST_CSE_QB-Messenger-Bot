@@ -168,7 +168,7 @@ async function POSTit(context){
     const answer = context.state.answer
     
     context.getUserProfile().then(user =>{
-       const person = user.firstName + " " + user.lastname;
+       const person = `${user.firstName}  ${user.lastName}`;
 
        create({
            question,
@@ -189,7 +189,7 @@ async function postQ(context){
     const question = context.state.question; 
     
     context.getUserProfile().then(user =>{
-       const person = user.firstName + " " + user.lastname;
+       const person = `${user.firstName}  ${user.lastName}`;
 
        createP({
            question: context.state.question,
