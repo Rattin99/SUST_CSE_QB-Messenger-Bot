@@ -27,10 +27,8 @@ function create({ question, answer, course,person }) {
                 }]
             },
             [process.env.NOTION_COURSE_ID]: {
-                Option: {
-                    select :{
-                        name: course
-                    }
+                select: {
+                  name:course
                 }
             },
             [process.env.NOTION_PERSON_ID]: {
@@ -64,10 +62,8 @@ function createP({question,course,person}){
                 }]
             },
             [process.env.NOTION_COURSE_ID]: {
-                Option:{
-                    select:{
-                        name: course
-                    }
+                select: {
+                  name:course
                 }
             },
             [process.env.NOTION_PERSON_ID]: {
